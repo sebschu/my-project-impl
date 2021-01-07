@@ -94,12 +94,12 @@ function make_slides(f) {
 
   slides.trial = slide({
     name: "trial",
-
-    start: function() {
+    present: exp.stimuli,
+    present_handle: function(stim) {
 
       // This is a placeholder stimulus that you will have to delete when
       // loading in the individual stimulus data.
-      var stim = all_stims[0];
+      //var stim = all_stims[0];
 
       // unselect all radio buttons at the beginning of each trial
       // (by default, the selection of the radio persists across trials)
@@ -157,7 +157,7 @@ function make_slides(f) {
       this.strange = $("#check-strange:checked").val() === undefined ? 0 : 1;
       if (this.radio) {
         this.log_responses();
-        exp.go(); //use exp.go() if and only if there is no "present" data.
+        _stream.apply(this); //use exp.go() if and only if there is no "present" data.
       } else {
         $('.err').show();
       }
